@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content_header %}
+Запись на консультацию
+{% endblock %}
+
+{% block content_subheader %}
+
+{% if context.date %}
+Вы записаны на {{context.date}}, в {{context.time}}.
+{% elif context.error_msg%}
+    {{ context.error_msg }}
+{% endif%}
+
+{% endblock %}
+
+
+{% block js %}
+<script>
+</script>
+{% endblock %}

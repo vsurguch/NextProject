@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block content_header %}
+Запись на консультацию
+{% endblock %}
+
+{% block content_subheader %}
+    <ul class="nav-list">
+        {% if not selected_date %}
+        <li>Выберите дату</li>
+        {% else %}
+        <li>{{ selected_date }}</li>
+        {% if not selected_time %}
+        <li>Выберите время</li>
+        {% else %}
+        <li>{{ selected_time }}</li>
+
+        <li>Введите данные</li>
+        {% endif %}
+        {% endif %}
+    </ul>
+{% endblock %}
+
+{% block content %}
+<table class="day">
+    {% for row in rows %}
+    <tr>
+        {% for cell in row %}
+
+        <td data-slot="{{cell[0]}}" class="{% if cell[1] %} td_active {% else %} td_inactive {% endif %}">
+            {{ cell[0] }}
+        </td>
+        <!--{% if cell[1] %}-->
+        <!--<td class="td_active">-->
+        <!--{% else %}-->
+        <!--<td class="td_inactive">-->
+
+        <!--{% endif %}-->
+         <!--{{cell[0]}} </td>-->
+        {% endfor %}
+    </tr>
+    {% endfor %}
+</table>
+<form action="/appointment/appoint_info" method="get" style="display: none;" id="hidden_form">
+    <input type="text" name="slot" id="slot-field">
+    <input type="submit">
+</form>
+{% endblock %}
+
+
+{% block js %}
+<script>
+let slot = null;
+document.querySelector(`.day`).addEventListener('click', event => cellClick(event));
+function cellClick(event) {
+    slot = event.target.dataset.slot;
+    const active = event.target.classList.contains('td_active');
+    console.log( document.forms[0].querySelector(`#slot-field`));
+    console.log(active);
+    document.forms[0].querySelector(`#slot-field`).value = slot;
+    if (active)
+        document.forms[0].submit();
+}
+</script>
+
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<h1>{% block title %}Восстановить пароль{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+<form class="login_form" method="post">
+    <ul class="form">
+        <li class="next-section"><label for="email">E-mail</label></li>
+        <li><input type="text" name="email" id="email" required></li>
+        <li><input type="submit" value="Отправить"></li>
+    </ul>
+</form>
+{% endblock %}

@@ -1,0 +1,12 @@
+
+{% extends 'base.html' %}
+
+{% block Title %} Главная {% endblock %}
+
+{% block salutation %}
+<div class="hello">
+    Hello{% if g.user %}, {{g.user['name']}}{% endif %}!
+</div>
+{% endblock %}
+
+{% block content_box %} {% endblock %}

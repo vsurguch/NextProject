@@ -1,0 +1,19 @@
+
+{% extends 'base.html' %}
+
+{% block content_header %}
+Войти
+{% endblock %}
+
+{% block content %}
+<form class="login_form" method="post">
+    <ul class="form">
+        <li class="next-section"><label for="email">Email</label></li>
+        <li><input type="text" name="email" id="email" required></li>
+        <li class="next-section"><label for="password">Password</label></li>
+        <li><input type="password" name="password" id="password" required></li>
+        <li><input type="submit" value="Войти"></li>
+        <li><a href="{{ url_for('auth.remind') }}">Забыли пароль?</a></li>
+    </ul>
+</form>
+{% endblock %}

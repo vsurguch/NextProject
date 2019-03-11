@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block content_header %}
+Запись на консультацию
+{% endblock %}
+
+{% block content_subheader %}
+    <ul class="nav-list">
+        {% if not selected_date %}
+        <li>Выберите дату</li>
+        {% else %}
+        <li>{{ selected_date }}</li>
+        {% if not selected_time %}
+        <li>Выберите время</li>
+        {% else %}
+        <li>{{ selected_time }}</li>
+
+        <li>Введите данные</li>
+        {% endif %}
+        {% endif %}
+    </ul>
+{% endblock %}
+
+{% block content %}
+<div class="form_area">
+<form class="login_form" action="{{url_for('appointment.confirmation')}}" method="get">
+
+    <ul class="form">
+        <li class="next-section"><label for="name">Имя</label></li>
+        <li><input type="text" name="name" id="name" value="{{ username }}"></li>
+
+        <li class="next-section"><label for="phone">Телефон</label></li>
+        <li><input type="text" name="phone" id="phone" value="{{ userphone }}"></li>
+
+        <li class="next-section"><label for="email">E-mail</label></li>
+        <li><input type="text" name="email" id="email" value="{{ useremail }}"></li>
+
+        <li class="next-section"><label for="other">Other</label></li>
+        <li><textarea name="other" id="other"></textarea>></li>
+
+        <li><input type="submit" value="Записаться"></li>
+    </ul>
+
+</form>
+</div>
+
+{% endblock %}
+
+
+{% block js %}
+<script>
+
+</script>
+
+{% endblock %}

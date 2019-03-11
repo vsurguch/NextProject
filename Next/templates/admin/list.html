@@ -1,0 +1,90 @@
+
+
+{% extends 'base.html' %}
+
+{% block content_header %}
+Управление
+{% endblock %}
+
+{% block content_subheader %}
+Просмотр записей
+{% endblock %}
+
+{% block content %}
+<form class="filter" method="post">
+    <div class="form-section">
+        <label for="name">Name</label>
+        <input type="text" name="name" id="name">
+    </div>
+    <div class="form-section">
+        <label for="from">From</label>
+        <input type="text" name="from" id="from" placeholder="dd/mm/yy">
+    </div>
+    <div class="form-section">
+        <label for="to">To</label>
+        <input type="text" name="to" id="to" placeholder="dd/mm/yy">
+    </div>
+    <button type="submit">Filter</button>
+</form>
+
+<table class="appointments_table">
+{% for appointment in context.appointments %}
+    <tr>
+        <td>{{appointment.id}} </td>
+        <td>{{appointment.date}}</td>
+        <td>{{appointment.name}}</td>
+        <td>{{appointment.phone}}</td>
+        <td>{{appointment.email}}</td>
+        <td class="delete-cell" data-id="{{appointment.id}}">&times</td>
+    </tr>
+{% endfor %}
+</table>
+{% endblock %}
+
+
+{% block js %}
+<script>
+
+    let deleteRequest = (url, id) => {
+        return new Promise((resolve, reject) => {
+            let xhr = new XMLHttpRequest();
+            xhr.open('DELETE', url, true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xhr.onreadystatechange = () =>{
+                if (xhr.readyState === 4) {
+                    if (xhr.status !== 200) {
+                        reject(xhr.status);
+                    } else {
+                        resolve(xhr.responseText);
+                    }
+                }
+            };
+            xhr.send(`id=${id}`);
+        });
+    }
+
+    function delete_appointment(id) {
+        return new Promise(resolve => {
+            deleteRequest('{{ url_for("admin.delete_appointment") }}', id).then(result => {
+                resolve(result);
+            }).catch(error => console.log(error));
+        });
+    }
+
+    window.addEventListener('load', ()=> {
+        document.querySelector(`.appointments_table`).addEventListener('click', event => {
+            if (event.target.classList.contains('delete-cell')){
+                const id = event.target.dataset.id;
+                delete_appointment(id).then(result => {
+                    resp = JSON.parse(result);
+                    if (resp.removed === 1){
+                        event.target.parentElement.remove();
+                    }
+                });
+            }
+        });
+    });
+
+</script>
+{% endblock %}
+

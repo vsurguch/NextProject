@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content_header %}
+{% if context.superuser %}
+Управление
+{% endif %}
+{% endblock %}
+
+
+{% block content %}
+
+{% if context.superuser %}
+<div class="buttons-block">
+    <button class="admin-button"><a href="{{url_for('admin.list')}}">Просмотр записей</a></button>
+    <button class="admin-button"><a href="{{url_for('admin.list')}}">Добавление ячеек</a></button>
+    <button class="admin-button"><a href="{{url_for('admin.list')}}">Просмотр пользователей</a></button>
+</div>
+
+{% endif %}
+
+{% endblock %}
+
+
+{% block js %}
+<script>
+</script>
+{% endblock %}

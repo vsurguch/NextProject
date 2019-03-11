@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+
+
+{% block content_header %}
+Запись на консультацию
+{% endblock %}
+
+
+{% block content_subheader %}
+    <ul class="nav-list">
+        {% if not selected_month %}
+        <li>Выберите дату</li>
+        {% else %}
+        <li>{{ selected_month }}</li>
+        {% if not selected_time %}
+        <li>Выберите время</li>
+        {% else %}
+        <li>{{ selected_time }}</li>
+
+        <li>Введите данные</li>
+        {% endif %}
+        {% endif %}
+    </ul>
+{% endblock %}
+
+{% block content %}
+<div class="month-iter">
+    <div class="prev">
+        {% if prev_active %}
+        <a href="{{ url_for('appointment.select_date', next=prev_month_year) }}"
+           >Пред.</a>
+        {% else %}
+        Пред.
+        {% endif %}
+    </div>
+    <div class="this">
+        {{month_name}}, {{year}}г.
+    </div>
+    <div class="next">
+        <a href="{{ url_for('appointment.select_date', next=next_month_year) }}">След.</a>
+    </div>
+</div>
+<table class="month">
+    {% for row in rows %}
+    <tr>
+        {% for cell in row %}
+        {% if cell[1] %}
+        <td class="td_active" data-date="{{ cell[0]}}" data-month="{{month}}" data-year="{{year}}">
+            <!--<a href="{{ url_for('appointment.select_time', d=cell[0], mth=month) }}"></a>-->
+                {{cell[0]}}
+        </td>
+        {% else %}
+        <td class="td_inactive">{{cell[0]}} </td>
+        {% endif %}
+        {% endfor %}
+    </tr>
+    {% endfor %}
+</table>
+<form action="{{ url_for('appointment.select_time') }}" method="post" class="hidden-form">
+    <input type="text" name="date">
+    <input type="text" name="month">
+    <input type="text" name="year">
+</form>
+{% endblock %}
+
+
+{% block js %}
+<script>
+
+    window.addEventListener('load', ()=>{
+        console.log('load');
+        localStorage.setItem('id', {{ appointment_id }});
+
+        document.querySelector('.month').addEventListener('click', event => {
+                if (event.target.classList.contains('td_active')){
+                    localStorage.setItem('day', event.target.dataset.date);
+                    localStorage.setItem('month', event.target.dataset.month);
+                    localStorage.setItem('year', event.target.dataset.year);
+                    document.forms[0].querySelector('input[name="date"]').value = event.target.dataset.date;
+                    document.forms[0].querySelector('input[name="month"]').value = event.target.dataset.month;
+                    document.forms[0].querySelector('input[name="year"]').value = event.target.dataset.year;
+                    document.forms[0].submit();
+                }
+            });
+
+    });
+
+</script>
+{% endblock %}

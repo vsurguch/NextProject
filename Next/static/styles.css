@@ -1,0 +1,306 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:visited {
+    color: inherit;
+}
+
+html, body {
+    height: 100%;
+}
+
+.main-area {
+    position: relative;
+    width: 1000px;
+    margin: 0 auto;
+    background: #fafafa;
+    min-height: 100%;
+}
+
+.header {
+    background: blue;
+    height: 100px;
+    line-height: 100px;
+    padding: 0px 50px;
+    border-bottom: 7px solid lightblue;
+    color: lightblue;
+}
+
+.header ul {
+    display: flex;
+    list-style: none;
+}
+
+.header li {
+    display: block;
+    padding: 0 10px;
+}
+
+.header .push {
+    margin-left: auto;
+}
+
+.header a {
+    color: white;
+    text-decoration: none;
+}
+
+/*.content {
+    display: table;
+    width: 70%;
+    margin: 0 auto;
+
+}
+
+.content-box {
+    display: table-cell;
+    vertical-align: middle;
+    height: 100%;
+}*/
+
+.content {
+    padding: 0 20% 100px;
+    height: 100%;
+}
+
+hr { border: none; border-top: 1px solid lightgray; }
+
+
+.login_form input[type="text"], .content input[type="password"] {
+    width: 300px;
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 5px;
+    border: 1px solid blue;
+}
+
+.login_form textarea{
+    height: 250px;
+    width: 300px;
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 5px;
+    border: 1px solid blue;
+}
+
+.login_form input .danger { color: #cc2f2e; }
+
+.login_form input[type="submit"] {
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 5px;
+    border: 0;
+    background-color: blue;
+    color: white;
+    cursor: pointer;
+}
+
+.footer {
+    box-sizing: border-box;
+    position: absolute;
+    bottom: 0px;
+    height: 50px;
+    line-height: 50px;
+    padding-left: 40px;
+    width: 100%;
+    border-top: 1px dashed black;
+}
+
+.content-area {
+}
+
+.content-area .flash{
+    padding: 10px;
+    color: red;
+}
+
+.content-header {
+    padding: 100px 0 30px;
+    font-size: 40px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.content-subheader{
+    padding: 0;
+    font-size: 24px;
+    font-weight: 300;
+    text-align: center;
+}
+
+.content .hello {
+    margin: 50% 0;
+    font-size: 40px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+}
+
+.form li{
+    padding: 5px 10px;
+}
+
+.form .next-section {
+    padding-top: 15px;
+}
+
+.nav-list {
+    display: flex;
+    flex-flow: row;
+    justify-content: left;
+    width: 100%;
+    list-style: none;
+}
+
+.nav-list li{
+    padding: 10px 15px 10px 0;
+}
+
+.month {
+    margin: 0 auto;
+    border-collapse: collapse;
+}
+
+.month td{
+    width: 100px;
+    height: 100px;
+    text-align: center;
+    border: 1px solid lightblue;
+    font-size: 30px;
+}
+
+/*.month td:hover {
+    border-color: blue;
+}*/
+
+.hidden-form {
+    display: none;
+}
+
+.month-iter {
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+}
+
+.prev, .this, .next {
+    padding: 10px;
+}
+
+.td_active {
+    color: black;
+}
+
+.td_active:hover {
+    background-color: lightblue;
+}
+
+.td_inactive {
+    color: lightgray;
+}
+
+.day {
+    margin: 0 auto;
+    border-collapse: separate;
+    border-spacing: 20px;
+}
+
+.day td {
+    border: 1px solid lightblue;
+    padding: 20px;
+}
+
+.day td:hover {
+    background-color: lightblue;
+}
+
+
+.appointments_table {
+    border-collapse: collapse;
+    margin: 0 auto;
+}
+
+.appointments_table td {
+    border: none;
+    padding: 7px 15px;
+}
+
+.appointments_table .delete-cell {
+    cursor: default;
+}
+
+.appointments_table .delete-cell:hover {
+    background-color: black;
+    color: white;
+}
+
+.filter {
+    padding: 20px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.filter . form-section {
+    display: inline-block;
+}
+
+.filter label {
+    font-size: 16px;
+    color: darkgray;
+    padding: 0 3px;
+}
+
+.filter input[type="text"] {
+    width: 100px;
+    height: 24px;
+    padding: 0 5px;
+    font-size: 16px;
+    border: 1px solid blue;
+}
+
+.filter button{
+    background-color: blue;
+    color: white;
+    height: 24px;
+    width: 70px;
+    border: 0;
+    font-size: 16px;
+}
+
+.buttons-block {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    width: 250px;
+}
+
+.admin-button {
+    margin: 10px;
+    background-color: white;
+    width: 220px;
+    color: blue;
+    height: 35px;
+    border: 2px solid blue;
+    box-shadow: none;
+    font-size: 16px;
+    border-radius: 5px;
+}
+
+.admin-button:hover {
+    background-color: blue;
+    color: white;
+}

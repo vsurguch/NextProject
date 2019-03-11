@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block Title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+<div class="main-area">
+   <div class="header">
+        <ul>
+            <li><a href="{{ url_for('main.index') }}">Главная</a></li>
+            <li><a href="{{ url_for('appointment.select_date') }}">Записаться</a></li>
+            <li><a href="{{ url_for('main.get_to') }}">Как добраться</a></li>
+            <li><a href="{{ url_for('main.contacts') }}">Контакты</a></li>
+            {% if g.user %}
+            <li class="push"><a href="{{ url_for('lk.lk') }}">{{ g.user['name'] }}</a></li>
+            <li><a href="{{ url_for('auth.logout') }}">Выйти</a></li>
+            {% else %}
+            <li class="push"><a href="{{ url_for('auth.register') }}">Зарегистрироваться</a></li>
+            <li><a href="{{ url_for('auth.login') }}">Войти</a></li>
+            {% endif %}
+        </ul>
+    </div>
+
+
+    <div class="content">
+        {% block salutation %}{% endblock %}
+
+        {% block content_box %}
+        <div class="content-box">
+            <div class="content-header">
+                {% block content_header %}{% endblock %}
+            </div>
+            <div class="content-subheader">
+                {% block content_subheader %}{% endblock %}
+            </div>
+
+            <div class="content-area">
+            {% for message in get_flashed_messages() %}
+            <div class="flash">{{message}}</div>
+            {% endfor %}
+            {% block content %}{% endblock %}
+            </div>
+        </div>
+        {% endblock %}
+    </div>
+
+    <div class="footer">
+        <p style="font-size: 12px">&copy; Vladimir.Surguch, 2019</p>
+    </div>
+
+</div>
+
+{% block js %} {% endblock %}
+</body>
+</html>

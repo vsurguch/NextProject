@@ -1,0 +1,24 @@
+
+{% extends 'base.html' %}
+
+{% block header %}
+{% block title %}Зарегистрироваться{% endblock %}
+{% endblock %}
+
+{% block content %}
+<form class="login_form" method="post">
+    <ul class="form">
+        <li class="next-section"><label for="name">Name</label></li>
+        <li><input type="text" name="name" id="name" required></li>
+        <li class="next-section"><label for="email">E-mail</label></li>
+        <li><input type="text" name="email" id="email" required></li>
+        <li class="next-section"><label for="phone">Phone</label></li>
+        <li><input type="text" name="phone" id="phone" required></li>
+        <li class="next-section"><label for="password">Password</label></li>
+        <li><input type="password" name="password" id="password" required></li>
+        <li class="next-section"><label for="confirm">Confirm Password</label></li>
+        <li><input type="password" name="confirm" id="confirm" required></li>
+        <li><input type="submit" value="Register"></li>
+    </ul>
+</form>
+{% endblock %}
